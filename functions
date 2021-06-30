@@ -1,0 +1,165 @@
+import { StatusBar } from 'expo-status-bar';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity,Button, SafeAreaView, Alert } from 'react-native';
+
+export default function App() {
+
+////////////////////////////////// NOTE:  A1 / A2 / A....  LINKS THE FUNCTIONS AND WHEN TO BE USED  /////////////////////////////////////////
+
+
+
+
+////////////////////                            /////////////////////////
+///////////////////   FUNCTIONS FOR BUTTONS     //////////////////////////
+/////////////////////                         ///////////////////////////
+  function Buttonpressed() {
+    console.log("Hello there ....")
+    console.log(count)
+    Setcount(count+1)                             //////////////   A1      //////////////////
+    if(count>=20){
+      console.log("good job")
+    }
+    
+  }
+
+  function buttondown(){                          ////////////// A1   //////////////////
+
+    Setcount(count-1)
+  }
+
+  function reset(){
+    Setcount(0)                                  ////////////   A1  //////////////////////
+  }
+
+  function renderencouragingtext(){
+    if(count>10){                                 //////////////  A2   ////////////////////
+    return "keep going !!!!!!!"
+    }
+   
+  }
+
+  const[count,Setcount] = useState(0);             ////////    A1 / A2 ////////////////
+  
+  
+  //////////////////////////////////////////////////////////////////////////////////
+ 
+
+  return (
+
+    
+    <ScrollView>
+    <View style={styles.container}>
+           
+
+      <Text>Hello ! </Text>
+      <Text style = {{fontSize:60}} >{count}</Text>
+/////////////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////            ///////////////////////////
+/////////////////////////  BUTTONS    ///////////////////////////
+/////////////////////////    A1        /////////////////////////////
+
+    <Button color='red' title = "increase" onPress={Buttonpressed}></Button>
+    <Button color='blue' title = "decrease" onPress={buttondown}></Button>
+    <Button color='green' title = "reset" onPress={reset}></Button>
+    
+  ////////////////////////////////////////////////////////////////////////
+    
+    
+   
+   ///////////                                  /////////////////////////
+   /////////// DISPLAY TEXT AFTER CONDITION(COUNT)////////////////////
+   ///////////                 A2               /////////////////////////////
+  
+  
+  <Text>{renderencouragingtext()}</Text>
+  
+  
+  
+  ////////////////////////////////////////////////////////////
+
+   
+   //////////////////////                 ////////////////
+   ///////////////////// TOUCHABLE OPACITY////////////
+  /////////////////////                   //////////// 
+   
+   <TouchableOpacity onPress={()=>Setcount(count+1)}>
+    
+    
+    <Text style = {styles.increasenumberbutton} >{count}</Text>
+
+    </TouchableOpacity>
+    
+    
+    
+   / //////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////                   /////////////////////
+////////////////////////////////   CREATE ALERTS   ////////////////////////
+///////////////////////////////                   ////////////////////
+
+    <TouchableOpacity onPress={()=>Alert.alert("health,", "Have you watered",
+    [
+     {text:"yes", onPress: ()=>console.log("yess")},
+     {text:"no" , onPress: ()=>Alert.alert("confirmation", "are you sure",        ///// FORMAT: TITLE, MESSAGE, OPTIONS(YES/NO)  //// CAN REPEAT FOR OPTIONS
+     [{text:"yes"},                                                               ////////
+        {text:"no"}, ])},                                                         NOTE:  FOR ALERT(OPTION IN ALERT): FORMAT CHANGES FROM
+              ])}>                                                                (touchableopacity onPress)     onPress ={()=>Alert.alert / function}  to
+    <Image                                                                         (Alert Options on Press)      onPress : ()=> Alert.alert             
+        style={styles.tinyLogo}
+        source={{
+          uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',     ////////  IMPORT ONLINE IMAGES  /////////////
+        }}></Image>
+
+    </TouchableOpacity>
+      
+//////////////////////////////////////////////////////////////////////////////
+
+
+      <StatusBar style="auto" />
+    </View>
+    </ScrollView>
+  );
+}
+
+
+
+
+///////////////////////////////////////////                 ////////////////////////
+/////////////////////////////////////////     STYLING      /////////////////////////
+//////////////////////////////////////                    /////////////////////////
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
+  tinyLogo: {
+
+  width: 200,
+  height: 200,
+  borderRadius:100,
+  paddingTop:50,
+  
+  },
+
+  increasenumberbutton: {
+
+    backgroundColor:"gray",
+    padding: 30,
+    borderRadius:50,
+    fontSize:80
+    
+    
+
+  }
+
+
+  
+});
