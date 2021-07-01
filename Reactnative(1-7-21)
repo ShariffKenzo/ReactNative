@@ -1,0 +1,138 @@
+//import { StatusBar } from 'expo-status-bar';
+import React, {useState} from 'react';
+import { 
+  StyleSheet, Text, View, Image, ScrollView, 
+  TouchableOpacity,Button, SafeAreaView, Alert, Platform,
+  StatusBar, Dimensions } from 'react-native';
+
+//import { useDimensions } from '@react-native-community/hooks';
+
+export default function App() {
+
+
+  function Buttonpressed() {
+    console.log("Hello there ....")
+  console.log(Dimensions.get('screen'))
+   
+   
+
+    console.log(count)
+    Setcount(count+1)
+    if(count>=20){
+      console.log("good job")
+    }
+    
+  }
+
+  function buttondown(){
+
+    Setcount(count-1)
+  }
+
+  function reset(){
+    Setcount(0)
+  }
+
+  function renderencouragingtext(){
+    if(count>10){
+    return "keep going !!!!!!!"
+    }
+   
+  }
+
+  const[count,Setcount] = useState(0);
+
+  
+ 
+
+  return (
+
+    
+    <ScrollView style={styles.scrollviewcont}>
+    <View style={styles.container}>
+           
+
+      <Text>Hello ! </Text>
+      <Text style = {{fontSize:60}} >{count}</Text>
+
+    <Button color='red' title = "increase" onPress={Buttonpressed}></Button>
+    <Button color='blue' title = "decrease" onPress={buttondown}></Button>
+    <Button color='green' title = "reset" onPress={reset}></Button>
+    <Text>{renderencouragingtext()}</Text>
+
+    <TouchableOpacity onPress={()=>Setcount(count+1)}>
+    
+    
+    <Text style = {styles.increasenumberbutton} >{count}</Text>
+
+    </TouchableOpacity>
+
+
+    
+
+    <TouchableOpacity onPress={()=>Alert.alert("health,", "Are you feeling happy?",
+    [
+     {text:"yes", onPress: ()=>Alert.alert('','Great!🥰 ')},
+     {text:"no" , onPress: ()=>Alert.alert("Really?", "are you feeling unhappy???",
+     [  {text:"yes", onPress: ()=>Alert.alert("Be Happy", "فَاِنَّ مَعَ الۡعُسۡرِ يُسۡرًا ۙ‏(with hardship comes ease Surah 94:5)",)},
+        {text:"no", onPress: ()=>Alert.alert("","Fantastic😄")},])},
+              ])}>
+
+    <Image
+        style={styles.tinyLogo}
+        source={{
+          uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
+        }}></Image>
+
+    </TouchableOpacity>
+      
+
+
+
+      <StatusBar style="auto" />
+    </View>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  //  backgroundColor:'rgba(255,0,255,0.3)'
+  paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+
+    
+  },
+  tinyLogo: {
+
+  width: 200,
+  height: 200,
+  borderRadius:100,
+  paddingTop:50,
+  
+  },
+
+  increasenumberbutton: {
+
+    backgroundColor:"gray",
+    padding: 30,
+    borderRadius:50,
+    fontSize:80
+    
+    
+
+  },
+
+  scrollviewcont:{
+
+  //  backgroundColor:'rgba(255,0,255,0.3)',
+    
+
+  }
+
+
+  
+});
